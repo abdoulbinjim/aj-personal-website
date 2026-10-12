@@ -122,12 +122,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =====================================================
    CONSISTENT SVG ARROWS ACROSS ALL DEVICES
-   Replaces Unicode arrow symbols with vector icons.
+   Handles standalone icons and arrows within link text.
+   Does not modify text, links, buttons, or nested markup.
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    const arrowPaths = {
+    const svgNS = "http://www.w3.org/2000/svg";
+    const paths = {
         "↗": "M7 17 17 7 M7 7h10v10",
         "↖": "M17 17 7 7 M7 17V7h10",
         "↘": "M7 7 17 17 M17 7v10H7",
@@ -135,21 +136,22 @@ document.addEventListener("DOMContentLoaded", function () {
         "→": "M5 12h14 M13 5l7 7-7 7",
         "←": "M19 12H5 M11 5l-7 7 7 7",
         "↓": "M12 5v14 M5 13l7 7 7-7",
-        "↑": "M12 19V5 M5 11l7-7 7 7"
+        "↑": "M12 19V5 M5 11l7-7 7 7",
+        "➡": "M5 12h14 M13 5l7 7-7 7",
+        "⬅": "M19 12H5 M11 5l-7 7 7 7",
+        "⬇": "M12 5v14 M5 13l7 7 7-7",
+        "⬆": "M12 19V5 M5 11l7-7 7 7"
     };
 
-    document.querySelectorAll("span, button").forEach(function (element) {
-        if (element.children.length > 0) return;
+    // Match arrows with or without emoji/text variation selectors.
+    const arrowPattern = /([↗↖↘↙→←↓↑➡⬅⬇⬆][\uFE0E\uFE0F]?)/g;
+    const arrowCheck = /[↗↖↘↙→←↓↑➡⬅⬇⬆]/;
+    const excludedTags = new Set([
+        "SCRIPT", "STYLE", "NOSCRIPT", "TEXTAREA", "CODE", "PRE", "SVG"
+    ]);
 
-        const symbol = element.textContent
-            .trim()
-            .replace(/[\uFE0E\uFE0F]/g, "");
-
-        if (!arrowPaths[symbol]) return;
-
-        const svgNS = "http://www.w3.org/2000/svg";
+    function createArrow(character) {
         const svg = document.createElementNS(svgNS, "svg");
-
         svg.setAttribute("viewBox", "0 0 24 24");
         svg.setAttribute("width", "1.1em");
         svg.setAttribute("height", "1.1em");
@@ -160,11 +162,46 @@ document.addEventListener("DOMContentLoaded", function () {
         svg.setAttribute("stroke-linejoin", "round");
         svg.setAttribute("aria-hidden", "true");
         svg.setAttribute("focusable", "false");
+        svg.setAttribute("class", "aj-vector-arrow");
+        svg.style.display = "inline-block";
+        svg.style.verticalAlign = "-0.15em";
 
         const path = document.createElementNS(svgNS, "path");
-        path.setAttribute("d", arrowPaths[symbol]);
+        path.setAttribute("d", paths[character]);
         svg.appendChild(path);
-        element.replaceChildren(svg);
+        return svg;
+    }
+
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT
+    );
+    const targets = [];
+    let node;
+
+    while ((node = walker.nextNode())) {
+        const parent = node.parentElement;
+        if (!parent || !arrowCheck.test(node.nodeValue)) continue;
+        if (excludedTags.has(parent.tagName)) continue;
+        if (parent.closest("[contenteditable], script, style, noscript, textarea, code, pre, svg")) continue;
+        targets.push(node);
+    }
+
+    targets.forEach(function (textNode) {
+        const pieces = textNode.nodeValue.split(arrowPattern);
+        const fragment = document.createDocumentFragment();
+
+        pieces.forEach(function (piece) {
+            if (!piece) return;
+            const character = piece.replace(/[\uFE0E\uFE0F]/g, "");
+            if (paths[character]) {
+                fragment.appendChild(createArrow(character));
+            } else {
+                fragment.appendChild(document.createTextNode(piece));
+            }
+        });
+
+        textNode.replaceWith(fragment);
     });
 });
 
