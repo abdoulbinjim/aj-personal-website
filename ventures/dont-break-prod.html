@@ -1,0 +1,2837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Discover Don't Break Prod, an interactive engineering judgment platform co-founded by Abdulqudus Jimoh (AJ). Practice reviewing AI-generated code, make shipping decisions, and explore production engineering challenges."
+    >
+
+    <meta name="author" content="Abdulqudus Jimoh">
+
+    <title>Don't Break Prod | AJ</title>
+
+    <!-- Global Website Styles -->
+    <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+    >
+
+    <!-- Global Website JavaScript -->
+    <script
+        src="../assets/js/script.js"
+        defer
+    ></script>
+
+
+    <!-- =========================================
+         DON'T BREAK PROD
+         INTERACTIVE FEEDBACK BUTTON STYLING
+
+         This styling is included here so no
+         additional style.css changes are needed.
+    ========================================== -->
+
+    <style>
+
+        /*
+         * Default button appearance.
+         * The submit button remains disabled
+         * until the visitor accepts consent.
+         */
+
+        .dbp-page-feedback-form
+        .dbp-page-form-submit:disabled {
+
+            background: var(--dbp-bg-secondary);
+
+            border-color: var(--dbp-border);
+
+            color: var(--dbp-text-muted);
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+            box-shadow: none;
+
+            transform: none;
+
+        }
+
+
+        /*
+         * Consent accepted.
+         * The button becomes active and green.
+         */
+
+        .dbp-page-feedback-form
+        .dbp-page-form-submit:not(:disabled) {
+
+            background: #baff72;
+
+            border-color: #baff72;
+
+            color: #101d11;
+
+            opacity: 1;
+
+            cursor: pointer;
+
+            transition:
+                background-color 250ms ease,
+                border-color 250ms ease,
+                color 250ms ease,
+                box-shadow 250ms ease,
+                transform 250ms ease;
+
+        }
+
+
+        /*
+         * Highlight the arrow when active.
+         */
+
+        .dbp-page-feedback-form
+        .dbp-page-form-submit:not(:disabled)
+        > span:last-child {
+
+            background: #253d1a;
+
+            color: #baff72;
+
+        }
+
+
+        /*
+         * Active button hover.
+         */
+
+        .dbp-page-feedback-form
+        .dbp-page-form-submit:not(:disabled):hover {
+
+            background: #d2ffa3;
+
+            border-color: #d2ffa3;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(186, 255, 114, 0.18);
+
+        }
+
+
+        /*
+         * Keyboard accessibility.
+         */
+
+        .dbp-page-feedback-form
+        .dbp-page-form-submit:focus-visible {
+
+            outline: 3px solid var(--dbp-accent);
+
+            outline-offset: 4px;
+
+        }
+
+
+        /*
+         * Respect reduced-motion preferences.
+         */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .dbp-page-feedback-form
+            .dbp-page-form-submit {
+
+                transition: none;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         WEBSITE HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <nav
+            class="navbar"
+            aria-label="Main navigation"
+        >
+
+            <a
+                href="../index.html"
+                class="navbar-brand"
+                aria-label="AJ - Homepage"
+            >
+                AJ
+            </a>
+
+
+            <!-- Navigation Links -->
+
+            <div
+                class="nav-links"
+                id="primary-navigation"
+            >
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="../about.html">
+                    About
+                </a>
+
+                <a href="../career.html">
+                    Career
+                </a>
+
+                <a
+                    href="../ventures.html"
+                    class="active"
+                    aria-current="page"
+                >
+                    Ventures
+                </a>
+
+                <a href="../beyond-work.html">
+                    Beyond Work
+                </a>
+
+                <a href="../contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <!-- Theme Toggle -->
+
+            <button
+                type="button"
+                class="theme-toggle"
+                id="theme-toggle"
+                aria-label="Switch colour theme"
+            >
+
+                <span
+                    class="theme-icon"
+                    aria-hidden="true"
+                ></span>
+
+            </button>
+
+
+            <!-- Mobile Navigation -->
+
+            <button
+                type="button"
+                class="mobile-menu-toggle"
+                id="mobile-menu-toggle"
+                aria-label="Open navigation menu"
+                aria-controls="primary-navigation"
+                aria-expanded="false"
+            >
+
+                <span
+                    class="menu-toggle-icon"
+                    aria-hidden="true"
+                >
+
+                    <span class="menu-toggle-line menu-toggle-line-top"></span>
+
+                    <span class="menu-toggle-line menu-toggle-line-bottom"></span>
+
+                </span>
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================
+         DON'T BREAK PROD
+         DEDICATED VENTURE PAGE
+    ========================================== -->
+
+    <main
+        id="main-content"
+        class="dbp-page"
+    >
+
+
+        <!-- =====================================
+             SECTION 01
+             HERO
+        ====================================== -->
+
+        <section
+            class="dbp-page-hero"
+            aria-labelledby="dbp-page-title"
+        >
+
+            <div
+                class="dbp-page-hero-glow"
+                aria-hidden="true"
+            ></div>
+
+
+            <div class="dbp-page-container">
+
+
+                <!-- Breadcrumb -->
+
+                <nav
+                    class="dbp-page-breadcrumb"
+                    aria-label="Breadcrumb"
+                >
+
+                    <a href="../ventures.html">
+                        Ventures
+                    </a>
+
+                    <span aria-hidden="true">
+                        /
+                    </span>
+
+                    <span aria-current="page">
+                        Don't Break Prod
+                    </span>
+
+                </nav>
+
+
+
+                <!-- Hero Layout -->
+
+                <div class="dbp-page-hero-grid">
+
+
+                    <!-- Hero Content -->
+
+                    <div class="dbp-page-hero-content">
+
+
+                        <!-- Eyebrow -->
+
+                        <div class="dbp-page-eyebrow">
+
+                            <span
+                                class="dbp-page-status-dot"
+                                aria-hidden="true"
+                            ></span>
+
+                            <span>
+                                VENTURE 03 / 03
+                            </span>
+
+                            <span aria-hidden="true">
+                                ·
+                            </span>
+
+                            <span>
+                                DEVELOPER TECHNOLOGY
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- Brand Identifier -->
+
+                        <div class="dbp-page-brand">
+
+                            <span
+                                class="dbp-page-brand-symbol"
+                                aria-hidden="true"
+                            >
+                                &gt;_
+                            </span>
+
+                            <span class="dbp-page-brand-name">
+                                don't-break-prod
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- Main Heading -->
+
+                        <h1 id="dbp-page-title">
+
+                            Would
+
+                            <br>
+
+                            <span class="dbp-page-title-highlight">
+                                you ship
+                            </span>
+
+                            <br>
+
+                            this?
+
+                        </h1>
+
+
+
+                        <!-- Hero Lead -->
+
+                        <p class="dbp-page-hero-lead">
+
+                            The code looks right.
+                            The tests look clean.
+                            But is it actually safe
+                            for production?
+
+                        </p>
+
+
+
+                        <!-- Description -->
+
+                        <p class="dbp-page-hero-description">
+
+                            Don't Break Prod is an interactive
+                            platform designed to sharpen
+                            engineering judgment through
+                            realistic code-review decisions.
+
+                            Examine a proposed change,
+                            compare it against the requirements,
+                            and decide whether it should ship.
+
+                        </p>
+
+
+
+                        <!-- Platform Status -->
+
+                        <div class="dbp-page-hero-status">
+
+                            <span
+                                class="dbp-page-live-indicator"
+                                aria-hidden="true"
+                            ></span>
+
+                            <div>
+
+                                <span class="dbp-page-status-label">
+                                    PLATFORM STATUS
+                                </span>
+
+                                <strong>
+                                    Live Platform
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Hero Actions -->
+
+                        <div class="dbp-page-hero-actions">
+
+                            <a
+                                href="https://dontbreakprod.dev"
+                                class="dbp-page-button dbp-page-button-primary"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+
+                                <span>
+                                    Explore the Platform
+                                </span>
+
+                                <span aria-hidden="true">
+                                    ↗
+                                </span>
+
+                            </a>
+
+
+                            <a
+                                href="#dbp-how-it-works"
+                                class="dbp-page-button dbp-page-button-secondary"
+                            >
+
+                                <span>
+                                    How It Works
+                                </span>
+
+                                <span aria-hidden="true">
+                                    ↓
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         HERO CODE-REVIEW VISUAL
+                         ILLUSTRATIVE EXAMPLE
+                    ================================== -->
+
+                    <div class="dbp-page-hero-visual">
+
+                        <div class="dbp-page-review-window">
+
+
+                            <!-- Window Header -->
+
+                            <div class="dbp-page-window-header">
+
+                                <div
+                                    class="dbp-page-window-dots"
+                                    aria-hidden="true"
+                                >
+
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </div>
+
+
+                                <span class="dbp-page-window-title">
+                                    review-session / example
+                                </span>
+
+
+                                <span class="dbp-page-window-icon">
+                                    PR
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Review Information -->
+
+                            <div class="dbp-page-review-meta">
+
+                                <div>
+
+                                    <span class="dbp-page-review-label">
+                                        CODE REVIEW
+                                    </span>
+
+                                    <h2>
+
+                                        One small change.
+
+                                        <br>
+
+                                        One big decision.
+
+                                    </h2>
+
+                                </div>
+
+
+                                <span class="dbp-page-review-badge">
+                                    REVIEW
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- Contract -->
+
+                            <div class="dbp-page-contract">
+
+                                <span class="dbp-page-contract-label">
+                                    THE CONTRACT
+                                </span>
+
+                                <p>
+
+                                    Retry attempts must stop
+                                    once the configured limit
+                                    has been reached.
+
+                                </p>
+
+                            </div>
+
+
+
+                            <!-- Code Diff -->
+
+                            <div class="dbp-page-code-panel">
+
+                                <div class="dbp-page-code-heading">
+
+                                    <span>
+                                        retry-handler.js
+                                    </span>
+
+                                    <span>
+                                        DIFF
+                                    </span>
+
+                                </div>
+
+
+                                <pre><code><span class="dbp-code-comment">// Maximum allowed retries: 3</span>
+
+<span class="dbp-code-removed">- if (attempts &gt;= 3) {</span>
+<span class="dbp-code-added">+ if (attempts &gt; 3) {</span>
+    return stopRetrying();
+  }</code></pre>
+
+                            </div>
+
+
+
+                            <!-- Decision -->
+
+                            <div class="dbp-page-decision-panel">
+
+                                <span class="dbp-page-decision-label">
+                                    YOUR DECISION
+                                </span>
+
+                                <div class="dbp-page-decision-options">
+
+                                    <span class="dbp-page-decision-ship">
+                                        ✓ SHIP IT
+                                    </span>
+
+                                    <span class="dbp-page-decision-block">
+                                        ✕ BLOCK IT
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Visual Caption -->
+
+                        <div class="dbp-page-visual-caption">
+
+                            <span>
+                                ENGINEERING JUDGMENT
+                            </span>
+
+                            <span>
+                                PRODUCTION THINKING
+                            </span>
+
+                        </div>
+
+
+                        <p class="dbp-page-visual-disclaimer">
+
+                            Illustrative review scenario,
+                            not a live platform interaction.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PLATFORM SNAPSHOT
+        ====================================== -->
+
+        <section
+            class="dbp-page-snapshot"
+            aria-label="Platform overview"
+        >
+
+            <div class="dbp-page-container">
+
+                <div class="dbp-page-snapshot-grid">
+
+
+                    <div class="dbp-page-snapshot-item">
+
+                        <span class="dbp-page-snapshot-label">
+                            PLATFORM
+                        </span>
+
+                        <strong>
+                            Don't Break Prod
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="dbp-page-snapshot-item">
+
+                        <span class="dbp-page-snapshot-label">
+                            FOCUS
+                        </span>
+
+                        <strong>
+                            Engineering Judgment
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="dbp-page-snapshot-item">
+
+                        <span class="dbp-page-snapshot-label">
+                            STATUS
+                        </span>
+
+                        <strong>
+                            Live
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="dbp-page-snapshot-item">
+
+                        <span class="dbp-page-snapshot-label">
+                            MY ROLE
+                        </span>
+
+                        <strong>
+                            Co-Founder & Technical Contributor
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 02
+             THE IDEA
+        ====================================== -->
+
+        <section
+            class="dbp-page-about"
+            id="about-dbp"
+            aria-labelledby="dbp-about-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            01
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            THE IDEA
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        WHY DON'T BREAK PROD EXISTS
+                    </span>
+
+                </div>
+
+
+
+                <!-- About Grid -->
+
+                <div class="dbp-page-about-grid">
+
+
+                    <!-- Heading -->
+
+                    <div class="dbp-page-about-heading">
+
+                        <h2 id="dbp-about-title">
+
+                            Writing code
+
+                            <br>
+
+                            is one thing.
+
+                            <em>
+                                Trusting it
+                                is another.
+                            </em>
+
+                        </h2>
+
+                    </div>
+
+
+
+                    <!-- Content -->
+
+                    <div class="dbp-page-about-content">
+
+                        <p class="dbp-page-about-lead">
+
+                            AI can generate code at
+                            extraordinary speed.
+
+                            But someone still has
+                            to decide whether that
+                            code is safe to deploy.
+
+                        </p>
+
+
+                        <p>
+
+                            A proposed change can look
+                            perfectly reasonable while
+                            quietly violating a requirement,
+                            introducing a regression,
+                            or changing behaviour that
+                            other systems depend on.
+
+                        </p>
+
+
+                        <p>
+
+                            Don't Break Prod turns that
+                            challenge into an interactive
+                            learning experience.
+
+                            Instead of simply writing code,
+                            you practise the judgment
+                            required to review it.
+
+                        </p>
+
+
+                        <p>
+
+                            The goal is to become better
+                            at spotting risky changes,
+                            challenging assumptions,
+                            and making informed
+                            production decisions.
+
+                        </p>
+
+
+
+                        <!-- Callout -->
+
+                        <div class="dbp-page-about-callout">
+
+                            <span>
+                                THE CENTRAL QUESTION
+                            </span>
+
+                            <strong>
+
+                                Does this change
+                                actually honour
+                                the contract?
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 03
+             HOW IT WORKS
+        ====================================== -->
+
+        <section
+            class="dbp-page-process"
+            id="dbp-how-it-works"
+            aria-labelledby="dbp-process-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            02
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            THE PROCESS
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        FROM REVIEW TO VERDICT
+                    </span>
+
+                </div>
+
+
+
+                <!-- Introduction -->
+
+                <div class="dbp-page-process-intro">
+
+                    <div>
+
+                        <span class="dbp-page-eyebrow-text">
+                            FOUR STEPS. ONE DECISION.
+                        </span>
+
+
+                        <h2 id="dbp-process-title">
+
+                            Think before
+
+                            <br>
+
+                            you
+
+                            <em>ship.</em>
+
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+
+                        Each scenario puts you in
+                        the reviewer's seat.
+
+                        Your job is to examine the
+                        evidence and decide whether
+                        a proposed change belongs
+                        in production.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Process Cards -->
+
+                <div class="dbp-page-process-grid">
+
+
+                    <!-- Step 1 -->
+
+                    <article class="dbp-page-process-card">
+
+                        <span class="dbp-page-process-number">
+                            01
+                        </span>
+
+                        <span
+                            class="dbp-page-process-icon"
+                            aria-hidden="true"
+                        >
+                            ≡
+                        </span>
+
+
+                        <h3>
+                            Understand the contract
+                        </h3>
+
+
+                        <p>
+
+                            Read the requirements,
+                            expected behaviour,
+                            and conditions the
+                            implementation must satisfy.
+
+                        </p>
+
+
+                        <span class="dbp-page-process-footer">
+                            REQUIREMENTS
+                        </span>
+
+                    </article>
+
+
+
+                    <!-- Step 2 -->
+
+                    <article class="dbp-page-process-card">
+
+                        <span class="dbp-page-process-number">
+                            02
+                        </span>
+
+                        <span
+                            class="dbp-page-process-icon"
+                            aria-hidden="true"
+                        >
+                            &lt;/&gt;
+                        </span>
+
+
+                        <h3>
+                            Review the change
+                        </h3>
+
+
+                        <p>
+
+                            Inspect the proposed
+                            code changes and
+                            consider what they
+                            actually do.
+
+                        </p>
+
+
+                        <span class="dbp-page-process-footer">
+                            CODE REVIEW
+                        </span>
+
+                    </article>
+
+
+
+                    <!-- Step 3 -->
+
+                    <article class="dbp-page-process-card">
+
+                        <span class="dbp-page-process-number">
+                            03
+                        </span>
+
+                        <span
+                            class="dbp-page-process-icon"
+                            aria-hidden="true"
+                        >
+                            ◎
+                        </span>
+
+
+                        <h3>
+                            Look for the risk
+                        </h3>
+
+
+                        <p>
+
+                            Compare the implementation
+                            against the requirements.
+
+                            Consider edge cases,
+                            assumptions, and
+                            possible regressions.
+
+                        </p>
+
+
+                        <span class="dbp-page-process-footer">
+                            CRITICAL THINKING
+                        </span>
+
+                    </article>
+
+
+
+                    <!-- Step 4 -->
+
+                    <article class="dbp-page-process-card">
+
+                        <span class="dbp-page-process-number">
+                            04
+                        </span>
+
+                        <span
+                            class="dbp-page-process-icon"
+                            aria-hidden="true"
+                        >
+                            ✓
+                        </span>
+
+
+                        <h3>
+                            Make the call
+                        </h3>
+
+
+                        <p>
+
+                            Decide whether to
+                            ship or block the change,
+                            then review the verdict
+                            and its explanation.
+
+                        </p>
+
+
+                        <span class="dbp-page-process-footer">
+                            THE VERDICT
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 04
+             PRACTICE & ARCADE
+        ====================================== -->
+
+        <section
+            class="dbp-page-modes"
+            id="dbp-modes"
+            aria-labelledby="dbp-modes-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            03
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            THE EXPERIENCE
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        TWO WAYS TO PARTICIPATE
+                    </span>
+
+                </div>
+
+
+
+                <!-- Introduction -->
+
+                <div class="dbp-page-modes-intro">
+
+                    <h2 id="dbp-modes-title">
+
+                        Your review.
+
+                        <br>
+
+                        <em>Your rules.</em>
+
+                    </h2>
+
+
+                    <p>
+
+                        Choose a relaxed learning
+                        experience or test yourself
+                        against the clock in a
+                        competitive weekly challenge.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Mode Cards -->
+
+                <div class="dbp-page-modes-grid">
+
+
+                    <!-- =================================
+                         PRACTICE MODE
+                    ================================== -->
+
+                    <article
+                        class="dbp-page-mode-card dbp-page-mode-practice"
+                    >
+
+                        <div class="dbp-page-mode-top">
+
+                            <span class="dbp-page-mode-number">
+                                MODE 01
+                            </span>
+
+                            <span class="dbp-page-mode-symbol">
+                                &gt;_
+                            </span>
+
+                        </div>
+
+
+                        <span class="dbp-page-mode-category">
+                            LEARN AT YOUR OWN PACE
+                        </span>
+
+
+                        <h3>
+
+                            Practice
+
+                            <em>Mode.</em>
+
+                        </h3>
+
+
+                        <p class="dbp-page-mode-description">
+
+                            Explore a library of
+                            code-review challenges
+                            without the pressure
+                            of a timer.
+
+                        </p>
+
+
+
+                        <!-- Features -->
+
+                        <ul class="dbp-page-mode-features">
+
+                            <li>
+                                Browse available scenarios
+                            </li>
+
+                            <li>
+                                Filter by difficulty
+                                and category
+                            </li>
+
+                            <li>
+                                Make decisions at
+                                your own pace
+                            </li>
+
+                            <li>
+                                Explore verdicts
+                                and explanations
+                            </li>
+
+                        </ul>
+
+
+
+                        <!-- Practice Link -->
+
+                        <a
+                            href="https://dontbreakprod.dev/practice"
+                            class="dbp-page-mode-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <span>
+                                Start Practicing
+                            </span>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- =================================
+                         ARCADE MODE
+                    ================================== -->
+
+                    <article
+                        class="dbp-page-mode-card dbp-page-mode-arcade"
+                    >
+
+                        <div class="dbp-page-mode-top">
+
+                            <span class="dbp-page-mode-number">
+                                MODE 02
+                            </span>
+
+                            <span class="dbp-page-mode-symbol">
+                                ◉
+                            </span>
+
+                        </div>
+
+
+                        <span class="dbp-page-mode-category">
+                            WEEKLY CHALLENGE
+                        </span>
+
+
+                        <h3>
+
+                            Arcade
+
+                            <em>Mode.</em>
+
+                        </h3>
+
+
+                        <p class="dbp-page-mode-description">
+
+                            Put your engineering
+                            instincts to the test
+                            through a weekly
+                            challenge of five scenarios.
+
+                        </p>
+
+
+
+                        <!-- Features -->
+
+                        <ul class="dbp-page-mode-features">
+
+                            <li>
+                                Five scenarios
+                                in each weekly challenge
+                            </li>
+
+                            <li>
+                                Speed and accuracy
+                                both matter
+                            </li>
+
+                            <li>
+                                One attempt per
+                                weekly challenge
+                            </li>
+
+                            <li>
+                                Compete on the
+                                weekly leaderboard
+                            </li>
+
+                        </ul>
+
+
+
+                        <!-- Arcade Link -->
+
+                        <a
+                            href="https://dontbreakprod.dev/arcade"
+                            class="dbp-page-mode-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <span>
+                                Enter Arcade
+                            </span>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 05
+             PLATFORM PREVIEW
+        ====================================== -->
+
+        <section
+            class="dbp-page-preview"
+            id="dbp-preview"
+            aria-labelledby="dbp-preview-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            04
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            THE PLATFORM
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        A LOOK INSIDE
+                    </span>
+
+                </div>
+
+
+
+                <!-- Introduction -->
+
+                <div class="dbp-page-preview-intro">
+
+                    <div>
+
+                        <span class="dbp-page-eyebrow-text">
+                            BUILT FOR DECISION-MAKING
+                        </span>
+
+
+                        <h2 id="dbp-preview-title">
+
+                            Inside
+
+                            <br>
+
+                            <em>Don't Break Prod.</em>
+
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+
+                        A look at the platform
+                        where developers can
+                        practise evaluating code
+                        changes and making
+                        production decisions.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Platform Screenshot -->
+
+                <figure class="dbp-page-preview-figure">
+
+                    <div class="dbp-page-preview-image">
+
+                        <img
+                            src="../assets/images/ventures/dont-break-prod/dont-break-prod-preview.jpg"
+                            alt="Preview of the Don't Break Prod platform"
+                            loading="lazy"
+                            decoding="async"
+                        >
+
+                    </div>
+
+
+
+                    <!-- Screenshot Caption -->
+
+                    <figcaption>
+
+                        <span>
+
+                            DON'T BREAK PROD
+                            / PLATFORM PREVIEW
+
+                        </span>
+
+
+                        <a
+                            href="https://dontbreakprod.dev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            Visit Live Platform
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+                    </figcaption>
+
+                </figure>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 06
+             ENGINEERING JUDGMENT
+        ====================================== -->
+
+        <section
+            class="dbp-page-value"
+            aria-labelledby="dbp-value-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            05
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            BEYOND THE CODE
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        WHAT YOU PRACTISE
+                    </span>
+
+                </div>
+
+
+
+                <!-- Value Grid -->
+
+                <div class="dbp-page-value-grid">
+
+
+                    <!-- Left Column -->
+
+                    <div class="dbp-page-value-heading">
+
+                        <h2 id="dbp-value-title">
+
+                            Good judgment
+
+                            <br>
+
+                            prevents
+
+                            <em>bad releases.</em>
+
+                        </h2>
+
+
+                        <p>
+
+                            The platform focuses on
+                            the thinking that happens
+                            between seeing a code
+                            change and approving it.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Right Column -->
+
+                    <div class="dbp-page-value-list">
+
+
+                        <!-- Value 1 -->
+
+                        <div class="dbp-page-value-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Contract Awareness
+                                </h3>
+
+                                <p>
+
+                                    Recognising when
+                                    an implementation
+                                    conflicts with
+                                    agreed requirements.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Value 2 -->
+
+                        <div class="dbp-page-value-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Risk Identification
+                                </h3>
+
+                                <p>
+
+                                    Spotting subtle bugs,
+                                    overlooked edge cases,
+                                    and dangerous assumptions.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Value 3 -->
+
+                        <div class="dbp-page-value-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Code Review Discipline
+                                </h3>
+
+                                <p>
+
+                                    Evaluating changes
+                                    based on behaviour
+                                    rather than how
+                                    convincing they appear.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Value 4 -->
+
+                        <div class="dbp-page-value-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Production Thinking
+                                </h3>
+
+                                <p>
+
+                                    Considering the
+                                    consequences of
+                                    approving a change
+                                    before it reaches
+                                    a live environment.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 07
+             MY INVOLVEMENT
+        ====================================== -->
+
+        <section
+            class="dbp-page-role"
+            aria-labelledby="dbp-role-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            06
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            MY INVOLVEMENT
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        BEHIND THE PLATFORM
+                    </span>
+
+                </div>
+
+
+
+                <!-- Role Grid -->
+
+                <div class="dbp-page-role-grid">
+
+
+                    <!-- Role Heading -->
+
+                    <div class="dbp-page-role-heading">
+
+                        <span class="dbp-page-eyebrow-text">
+
+                            CO-FOUNDER & TECHNICAL CONTRIBUTOR
+
+                        </span>
+
+
+                        <h2 id="dbp-role-title">
+
+                            Building
+
+                            <br>
+
+                            something
+
+                            <em>different.</em>
+
+                        </h2>
+
+                    </div>
+
+
+
+                    <!-- Role Content -->
+
+                    <div class="dbp-page-role-content">
+
+                        <p class="dbp-page-role-lead">
+
+                            Don't Break Prod brings
+                            together software engineering,
+                            critical thinking, and
+                            interactive learning.
+
+                        </p>
+
+
+                        <p>
+
+                            I'm involved as a
+                            Co-Founder and Technical
+                            Contributor, supporting
+                            the technical direction
+                            and development of
+                            the platform.
+
+                        </p>
+
+
+                        <p>
+
+                            The project reflects
+                            an area of engineering
+                            I'm particularly interested
+                            in: understanding how
+                            systems behave, questioning
+                            assumptions, and recognising
+                            issues before they become
+                            production problems.
+
+                        </p>
+
+
+
+                        <!-- Role Callout -->
+
+                        <div class="dbp-page-role-callout">
+
+                            <span>
+                                MY ROLE
+                            </span>
+
+
+                            <strong>
+
+                                Co-Founder
+
+                                <br>
+
+                                & Technical Contributor
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 08
+             BLOG & RESOURCES
+        ====================================== -->
+
+        <section
+            class="dbp-page-resources"
+            aria-labelledby="dbp-resources-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            07
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            MORE TO EXPLORE
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        THE PLATFORM ECOSYSTEM
+                    </span>
+
+                </div>
+
+
+
+                <!-- Resources Grid -->
+
+                <div class="dbp-page-resources-grid">
+
+
+                    <!-- Introduction -->
+
+                    <div class="dbp-page-resources-heading">
+
+                        <h2 id="dbp-resources-title">
+
+                            Keep
+
+                            <br>
+
+                            <em>learning.</em>
+
+                        </h2>
+
+
+                        <p>
+
+                            Beyond the interactive
+                            challenges, Don't Break Prod
+                            also shares ideas about
+                            engineering, AI-generated
+                            code, and the changing
+                            nature of software development.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Resource Links -->
+
+                    <div class="dbp-page-resource-links">
+
+
+                        <!-- Official Website -->
+
+                        <a
+                            href="https://dontbreakprod.dev"
+                            class="dbp-page-resource-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <div>
+
+                                <span>
+                                    THE PLATFORM
+                                </span>
+
+                                <strong>
+                                    Official Website
+                                </strong>
+
+                            </div>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- Practice Mode -->
+
+                        <a
+                            href="https://dontbreakprod.dev/practice"
+                            class="dbp-page-resource-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <div>
+
+                                <span>
+                                    SCENARIO LIBRARY
+                                </span>
+
+                                <strong>
+                                    Practice Mode
+                                </strong>
+
+                            </div>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- Arcade Mode -->
+
+                        <a
+                            href="https://dontbreakprod.dev/arcade"
+                            class="dbp-page-resource-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <div>
+
+                                <span>
+                                    WEEKLY CHALLENGE
+                                </span>
+
+                                <strong>
+                                    Arcade Mode
+                                </strong>
+
+                            </div>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- Blog -->
+
+                        <a
+                            href="https://dontbreakprod.dev/blog"
+                            class="dbp-page-resource-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <div>
+
+                                <span>
+                                    IDEAS & ARTICLES
+                                </span>
+
+                                <strong>
+                                    From the Team
+                                </strong>
+
+                            </div>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 09
+             LIVE FEEDBACK FORM
+        ====================================== -->
+
+        <section
+            class="dbp-page-feedback"
+            id="dbp-feedback"
+            aria-labelledby="dbp-feedback-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Section Heading -->
+
+                <div class="dbp-page-section-heading">
+
+                    <div class="dbp-page-section-label">
+
+                        <span>
+                            08
+                        </span>
+
+                        <span class="dbp-page-section-line"></span>
+
+                        <span>
+                            FEEDBACK
+                        </span>
+
+                    </div>
+
+
+                    <span class="dbp-page-section-note">
+                        HELP IMPROVE THE EXPERIENCE
+                    </span>
+
+                </div>
+
+
+
+                <!-- Feedback Grid -->
+
+                <div class="dbp-page-feedback-grid">
+
+
+                    <!-- =================================
+                         FEEDBACK INTRODUCTION
+                    ================================== -->
+
+                    <div class="dbp-page-feedback-intro">
+
+                        <span class="dbp-page-eyebrow-text">
+                            YOUR INPUT MATTERS
+                        </span>
+
+
+                        <h2 id="dbp-feedback-title">
+
+                            Found a bug?
+
+                            <br>
+
+                            Have an
+
+                            <em>idea?</em>
+
+                        </h2>
+
+
+                        <p>
+
+                            Feedback helps identify
+                            issues, improve existing
+                            experiences, and explore
+                            ideas for future development.
+
+                        </p>
+
+
+
+                        <!-- Feedback Categories -->
+
+                        <div class="dbp-page-feedback-types">
+
+                            <span>
+                                Bug Reports
+                            </span>
+
+                            <span>
+                                Feature Suggestions
+                            </span>
+
+                            <span>
+                                General Feedback
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         FEEDBACK PANEL
+                    ================================== -->
+
+                    <div class="dbp-page-feedback-panel">
+
+
+                        <!-- Panel Heading -->
+
+                        <div class="dbp-page-feedback-panel-heading">
+
+                            <span>
+                                SEND FEEDBACK
+                            </span>
+
+
+                            <h3>
+
+                                Tell us what
+
+                                <em>you think.</em>
+
+                            </h3>
+
+
+                            <!-- UPDATED DESCRIPTION -->
+
+                            <p>
+
+                                Found an issue, have a suggestion,
+                                or want to share your experience?
+                                Submit your feedback directly
+                                using the form below.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             ACTIVE FEEDBACK FORM
+                             GOOGLE APPS SCRIPT CONNECTED
+                        ================================== -->
+
+                        <form
+                            id="dbp-feedback-form"
+                            class="dbp-page-feedback-form"
+                            action="https://script.google.com/macros/s/AKfycbz7jd2R-ql7l8EFC8Vzi7HRifvlRBLih_chuJPTDw31_m8CksV9KFLh5pfkBIyHNkAY/exec"
+                            method="POST"
+                        >
+
+
+                            <!-- =================================
+                                 FULL NAME
+                            ================================== -->
+
+                            <div class="dbp-page-form-group">
+
+                                <label for="dbp-feedback-name">
+                                    Your name
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="dbp-feedback-name"
+                                    name="fullName"
+                                    placeholder="Your full name"
+                                    autocomplete="name"
+                                    minlength="2"
+                                    maxlength="100"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 EMAIL ADDRESS
+                            ================================== -->
+
+                            <div class="dbp-page-form-group">
+
+                                <label for="dbp-feedback-email">
+                                    Email address
+                                </label>
+
+
+                                <input
+                                    type="email"
+                                    id="dbp-feedback-email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    autocomplete="email"
+                                    maxlength="254"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 FEEDBACK CATEGORY
+                            ================================== -->
+
+                            <div class="dbp-page-form-group">
+
+                                <label for="dbp-feedback-category">
+                                    What is this about?
+                                </label>
+
+
+                                <select
+                                    id="dbp-feedback-category"
+                                    name="category"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                        disabled
+                                    >
+                                        Select a category
+                                    </option>
+
+
+                                    <option value="Bug Report">
+                                        Bug Report
+                                    </option>
+
+
+                                    <option value="Feature Suggestion">
+                                        Feature Suggestion
+                                    </option>
+
+
+                                    <option value="General Feedback">
+                                        General Feedback
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 FEEDBACK MESSAGE
+                            ================================== -->
+
+                            <div class="dbp-page-form-group">
+
+                                <label for="dbp-feedback-message">
+                                    Your message
+                                </label>
+
+
+                                <textarea
+                                    id="dbp-feedback-message"
+                                    name="message"
+                                    rows="6"
+                                    placeholder="Tell us what happened, what you'd like to see, or what we could improve..."
+                                    minlength="10"
+                                    maxlength="2000"
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 CONTACT CONSENT
+                            ================================== -->
+
+                            <div class="dbp-page-form-consent">
+
+                                <input
+                                    type="checkbox"
+                                    id="dbp-feedback-consent"
+                                    name="consent"
+                                    required
+                                >
+
+
+                                <label for="dbp-feedback-consent">
+
+                                    I agree to be contacted
+                                    about my feedback if
+                                    further information
+                                    is needed.
+
+                                </label>
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 RETURN URL
+                                 USED BY CONFIRMATION PAGE
+                            ================================== -->
+
+                            <input
+                                type="hidden"
+                                name="returnUrl"
+                                id="dbp-return-url"
+                            >
+
+
+
+                            <!-- =================================
+                                 SPAM PROTECTION
+                                 HIDDEN HONEYPOT FIELD
+                            ================================== -->
+
+                            <div
+                                aria-hidden="true"
+                                style="position: absolute; left: -10000px;"
+                            >
+
+                                <input
+                                    type="text"
+                                    name="website"
+                                    tabindex="-1"
+                                    autocomplete="off"
+                                >
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 INTERACTIVE SUBMIT BUTTON
+
+                                 Initially disabled.
+
+                                 Becomes green and enabled
+                                 when consent is checked.
+                            ================================== -->
+
+                            <button
+                                type="submit"
+                                class="dbp-page-form-submit"
+                                id="dbp-feedback-submit"
+                                disabled
+                            >
+
+                                <span>
+                                    Send Feedback
+                                </span>
+
+                                <span aria-hidden="true">
+                                    ↗
+                                </span>
+
+                            </button>
+
+
+
+                            <!-- =================================
+                                 FORM INFORMATION
+                            ================================== -->
+
+                            <p
+                                class="dbp-page-form-status"
+                                id="dbp-feedback-form-status"
+                                role="status"
+                                aria-live="polite"
+                            >
+
+                                Tick the consent checkbox
+                                to activate Send Feedback.
+
+                                Your submission will be reviewed,
+                                and we may contact you if
+                                additional information is needed.
+
+                            </p>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SECTION 10
+             CLOSING
+        ====================================== -->
+
+        <section
+            class="dbp-page-closing"
+            aria-labelledby="dbp-closing-title"
+        >
+
+            <div class="dbp-page-container">
+
+
+                <!-- Closing Content -->
+
+                <div class="dbp-page-closing-content">
+
+
+                    <span class="dbp-page-closing-eyebrow">
+
+                        DON'T BREAK PROD / MAKE THE CALL
+
+                    </span>
+
+
+
+                    <h2 id="dbp-closing-title">
+
+                        The next
+
+                        <br>
+
+                        decision
+
+                        <br>
+
+                        is
+
+                        <em>yours.</em>
+
+                    </h2>
+
+
+
+                    <p>
+
+                        Think you've got the
+                        judgment to spot a bad
+                        change before it ships?
+
+                        Put it to the test.
+
+                    </p>
+
+
+
+                    <!-- Closing Actions -->
+
+                    <div class="dbp-page-closing-actions">
+
+
+                        <!-- Official Website -->
+
+                        <a
+                            href="https://dontbreakprod.dev"
+                            class="dbp-page-button dbp-page-button-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <span>
+                                Visit Don't Break Prod
+                            </span>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- Ventures -->
+
+                        <a
+                            href="../ventures.html"
+                            class="dbp-page-button dbp-page-button-secondary"
+                        >
+
+                            <span>
+                                Back to My Ventures
+                            </span>
+
+                            <span aria-hidden="true">
+                                ←
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     BACK TO VENTURES
+                ================================== -->
+
+                <a
+                    href="../ventures.html"
+                    class="dbp-page-next-link"
+                >
+
+                    <span class="dbp-page-next-label">
+                        BACK TO
+                    </span>
+
+
+                    <span class="dbp-page-next-title">
+
+                        All My Ventures
+
+                        <span aria-hidden="true">
+                            ↗
+                        </span>
+
+                    </span>
+
+
+                    <span class="dbp-page-next-description">
+
+                        Capstone Innovations
+                        · Cardan
+                        · Don't Break Prod
+
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         DON'T BREAK PROD
+         FEEDBACK FORM INTERACTIONS
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =====================================
+                   LOCATE FORM ELEMENTS
+                ====================================== */
+
+                const feedbackForm =
+                    document.getElementById(
+                        "dbp-feedback-form"
+                    );
+
+
+                const consentCheckbox =
+                    document.getElementById(
+                        "dbp-feedback-consent"
+                    );
+
+
+                const submitButton =
+                    document.getElementById(
+                        "dbp-feedback-submit"
+                    );
+
+
+                const returnUrlInput =
+                    document.getElementById(
+                        "dbp-return-url"
+                    );
+
+
+                const formStatus =
+                    document.getElementById(
+                        "dbp-feedback-form-status"
+                    );
+
+
+
+                /* =====================================
+                   VERIFY REQUIRED ELEMENTS
+                ====================================== */
+
+                if (
+                    !feedbackForm ||
+                    !consentCheckbox ||
+                    !submitButton ||
+                    !returnUrlInput
+                ) {
+
+                    return;
+
+                }
+
+
+
+                /* =====================================
+                   INTERACTIVE CONSENT BUTTON
+                ====================================== */
+
+                function updateSubmitButton() {
+
+                    /*
+                     * Checkbox unchecked:
+                     * Button disabled and muted.
+                     *
+                     * Checkbox checked:
+                     * Button enabled and green.
+                     */
+
+                    const hasConsent =
+                        consentCheckbox.checked;
+
+
+                    submitButton.disabled =
+                        !hasConsent;
+
+
+
+                    /*
+                     * Update the informational text
+                     * below the button.
+                     */
+
+                    if (formStatus) {
+
+                        if (hasConsent) {
+
+                            formStatus.textContent =
+                                "You're ready to submit your feedback. " +
+                                "Complete all required fields and click Send Feedback.";
+
+                        } else {
+
+                            formStatus.textContent =
+                                "Tick the consent checkbox to activate Send Feedback. " +
+                                "Your submission will be reviewed, and we may " +
+                                "contact you if additional information is needed.";
+
+                        }
+
+                    }
+
+                }
+
+
+
+                /* =====================================
+                   LISTEN FOR CONSENT CHANGES
+                ====================================== */
+
+                consentCheckbox.addEventListener(
+                    "change",
+                    updateSubmitButton
+                );
+
+
+
+                /*
+                 * Check the initial checkbox state
+                 * when the page loads.
+                 *
+                 * This also handles browsers that
+                 * restore a previously checked box.
+                 */
+
+                updateSubmitButton();
+
+
+
+                /* =====================================
+                   SET RETURN URL ON SUBMISSION
+                ====================================== */
+
+                feedbackForm.addEventListener(
+                    "submit",
+                    function () {
+
+
+                        /*
+                         * Build a return URL pointing
+                         * to the feedback section of
+                         * the current website page.
+                         *
+                         * Example:
+                         *
+                         * http://127.0.0.1:5500/ventures/
+                         * dont-break-prod.html#dbp-feedback
+                         *
+                         * This also works on the
+                         * published website.
+                         */
+
+
+                        const returnUrl = new URL(
+                            "#dbp-feedback",
+                            window.location.href
+                        );
+
+
+                        returnUrlInput.value =
+                            returnUrl.href;
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

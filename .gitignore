@@ -1,0 +1,22 @@
+# Windows system files
+Thumbs.db
+desktop.ini
+
+# macOS system files
+.DS_Store
+
+# VS Code local settings
+.vscode/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Dependencies
+node_modules/
+
+# Temporary logs
+*.log
+
+# Local backups
+aj-website-originals-backup/
