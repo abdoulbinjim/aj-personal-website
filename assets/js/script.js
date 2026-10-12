@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const themeToggle = document.getElementById("theme-toggle");
     const html = document.documentElement;
-
     const savedTheme = localStorage.getItem("aj-theme");
 
     // Dark mode is the default for first-time visitors.
@@ -21,58 +20,36 @@ document.addEventListener("DOMContentLoaded", () => {
             : "dark";
 
     function setTheme(theme) {
-
-        // Apply selected theme.
         html.setAttribute("data-theme", theme);
         html.style.colorScheme = theme;
-
-        // Remember the visitor's preference.
         localStorage.setItem("aj-theme", theme);
 
-        // Determine which theme comes next.
         const nextTheme = theme === "dark" ? "light" : "dark";
 
-        // Keep the theme button accessible.
         if (themeToggle) {
-
             themeToggle.setAttribute(
                 "aria-label",
                 `Switch to ${nextTheme} mode`
             );
-
             themeToggle.setAttribute(
                 "title",
                 `Switch to ${nextTheme} mode`
             );
-
             themeToggle.setAttribute(
                 "aria-pressed",
                 String(theme === "light")
             );
-
         }
-
     }
 
-    // Apply saved theme when the website loads.
     setTheme(initialTheme);
 
-    // Switch between light and dark themes.
     if (themeToggle) {
-
         themeToggle.addEventListener("click", () => {
-
             const currentTheme = html.getAttribute("data-theme");
-
-            const newTheme =
-                currentTheme === "dark" ? "light" : "dark";
-
-            setTheme(newTheme);
-
+            setTheme(currentTheme === "dark" ? "light" : "dark");
         });
-
     }
-
 
     /* =========================================
        MOBILE NAVIGATION
@@ -81,142 +58,159 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileMenuToggle = document.getElementById(
         "mobile-menu-toggle"
     );
-
     const siteHeader = document.querySelector(".site-header");
-
     const primaryNavigation = document.getElementById(
         "primary-navigation"
     );
 
-    // Proceed only when all navigation elements exist.
     if (mobileMenuToggle && siteHeader && primaryNavigation) {
 
-        /* =====================================
-           MENU STATE
-        ===================================== */
-
         function setMenuOpen(isOpen) {
-
-            // Update header styling.
             siteHeader.classList.toggle("menu-open", isOpen);
 
-            // Update accessibility state.
             mobileMenuToggle.setAttribute(
                 "aria-expanded",
                 String(isOpen)
             );
-
-            // Update button description.
             mobileMenuToggle.setAttribute(
                 "aria-label",
                 isOpen
                     ? "Close navigation menu"
                     : "Open navigation menu"
             );
-
             mobileMenuToggle.setAttribute(
                 "title",
-                isOpen
-                    ? "Close menu"
-                    : "Open menu"
+                isOpen ? "Close menu" : "Open menu"
             );
-
         }
 
-
-        /* =====================================
-           TOGGLE MENU ON BUTTON CLICK
-        ===================================== */
-
         mobileMenuToggle.addEventListener("click", () => {
-
-            const isOpen = siteHeader.classList.contains(
-                "menu-open"
-            );
-
+            const isOpen = siteHeader.classList.contains("menu-open");
             setMenuOpen(!isOpen);
-
         });
 
-
-        /* =====================================
-           CLOSE MENU AFTER NAVIGATION
-        ===================================== */
-
-        const navigationLinks = primaryNavigation.querySelectorAll(
-            "a"
-        );
-
-        navigationLinks.forEach((link) => {
-
-            link.addEventListener("click", () => {
-
-                setMenuOpen(false);
-
-            });
-
+        primaryNavigation.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => setMenuOpen(false));
         });
-
-
-        /* =====================================
-           CLOSE MENU WHEN CLICKING OUTSIDE
-        ===================================== */
 
         document.addEventListener("click", (event) => {
-
-            const isOpen = siteHeader.classList.contains(
-                "menu-open"
-            );
-
-            const clickedOutsideHeader = !siteHeader.contains(
-                event.target
-            );
-
-            if (isOpen && clickedOutsideHeader) {
-
+            if (
+                siteHeader.classList.contains("menu-open") &&
+                !siteHeader.contains(event.target)
+            ) {
                 setMenuOpen(false);
-
             }
-
         });
-
-
-        /* =====================================
-           CLOSE MENU WITH ESCAPE KEY
-        ===================================== */
 
         document.addEventListener("keydown", (event) => {
-
-            const isOpen = siteHeader.classList.contains(
-                "menu-open"
-            );
-
-            if (event.key === "Escape" && isOpen) {
-
+            if (
+                event.key === "Escape" &&
+                siteHeader.classList.contains("menu-open")
+            ) {
                 setMenuOpen(false);
-
-                // Return keyboard focus to the menu button.
                 mobileMenuToggle.focus();
-
             }
-
         });
-
-
-        /* =====================================
-           RESET MENU ON DESKTOP RESIZE
-        ===================================== */
 
         window.addEventListener("resize", () => {
-
             if (window.innerWidth > 850) {
-
                 setMenuOpen(false);
-
             }
-
         });
+    }
+});
 
+/* =====================================================
+   CONSISTENT SVG ARROWS ACROSS ALL DEVICES
+   Replaces Unicode arrow symbols with vector icons.
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const arrowPaths = {
+        "↗": "M7 17 17 7 M7 7h10v10",
+        "↖": "M17 17 7 7 M7 17V7h10",
+        "↘": "M7 7 17 17 M17 7v10H7",
+        "↙": "M17 7 7 17 M7 7v10h10",
+        "→": "M5 12h14 M13 5l7 7-7 7",
+        "←": "M19 12H5 M11 5l-7 7 7 7",
+        "↓": "M12 5v14 M5 13l7 7 7-7",
+        "↑": "M12 19V5 M5 11l7-7 7 7"
+    };
+
+    document.querySelectorAll("span, button").forEach(function (element) {
+        if (element.children.length > 0) return;
+
+        const symbol = element.textContent
+            .trim()
+            .replace(/[\uFE0E\uFE0F]/g, "");
+
+        if (!arrowPaths[symbol]) return;
+
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+
+        svg.setAttribute("viewBox", "0 0 24 24");
+        svg.setAttribute("width", "1.1em");
+        svg.setAttribute("height", "1.1em");
+        svg.setAttribute("fill", "none");
+        svg.setAttribute("stroke", "currentColor");
+        svg.setAttribute("stroke-width", "2");
+        svg.setAttribute("stroke-linecap", "round");
+        svg.setAttribute("stroke-linejoin", "round");
+        svg.setAttribute("aria-hidden", "true");
+        svg.setAttribute("focusable", "false");
+
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute("d", arrowPaths[symbol]);
+        svg.appendChild(path);
+        element.replaceChildren(svg);
+    });
+});
+
+/* =====================================================
+   HOMEPAGE PHOTO-FIRST ENTRANCE
+   This runs on the homepage only. The remaining pages
+   continue using the shared theme, menu, and SVG icons.
+===================================================== */
+
+(function () {
+    const hero = document.querySelector(".hero");
+    const photo = hero && hero.querySelector(".hero-image");
+
+    if (!hero || !photo) return;
+
+    const html = document.documentElement;
+    html.classList.add("hero-sequenced");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        hero.classList.add("hero-photo-ready");
+        return;
     }
 
-});
+    let started = false;
+
+    function revealAfterPhoto() {
+        if (started) return;
+        started = true;
+
+        // Show the photograph unobstructed first, then fade
+        // in the overlay and introduce the homepage content.
+        window.setTimeout(function () {
+            window.requestAnimationFrame(function () {
+                hero.classList.add("hero-photo-ready");
+            });
+        }, 950);
+    }
+
+    if (photo.complete) {
+        revealAfterPhoto();
+    } else {
+        photo.addEventListener("load", revealAfterPhoto, { once: true });
+        photo.addEventListener("error", revealAfterPhoto, { once: true });
+    }
+
+    // Do not leave the homepage hidden indefinitely when
+    // an image cannot be fetched or the connection is slow.
+    window.setTimeout(revealAfterPhoto, 4000);
+})();
